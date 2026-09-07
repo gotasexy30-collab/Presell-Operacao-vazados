@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { CheckCircle2, ArrowRight, XCircle, Settings, X } from "lucide-react";
+import { CheckCircle2, ArrowRight, XCircle, X } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: QuizIndex,
@@ -26,15 +26,20 @@ function QuizIndex() {
     if (savedUrl) {
       setRedirectUrl(savedUrl);
     }
+    
+    if (window.location.search.includes("admin=true")) {
+      setTempUrl(savedUrl || "https://google.com");
+      setShowAdmin(true);
+    }
   }, []);
 
-  const handleAnswer = (isYes: boolean) => {
-    setStep((prev) => prev + 1);
-  };
-
-  const openAdmin = () => {
-    setTempUrl(redirectUrl);
-    setShowAdmin(true);
+  const closeAdmin = () => {
+    setShowAdmin(false);
+    if (window.location.search.includes("admin=true")) {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('admin');
+      window.history.replaceState({}, '', url.toString());
+    }
   };
 
   const handleSaveAdmin = () => {
@@ -42,7 +47,11 @@ function QuizIndex() {
       localStorage.setItem("redirectUrl", tempUrl.trim());
       setRedirectUrl(tempUrl.trim());
     }
-    setShowAdmin(false);
+    closeAdmin();
+  };
+
+  const handleAnswer = (isYes: boolean) => {
+    setStep((prev) => prev + 1);
   };
 
   const renderContent = () => {
@@ -115,21 +124,12 @@ function QuizIndex() {
     <div className="min-h-screen bg-zinc-950 flex flex-col items-center justify-center p-4 relative">
       {renderContent()}
 
-      {/* Admin Panel Button */}
-      <button
-        onClick={openAdmin}
-        className="fixed bottom-4 right-4 p-3 bg-zinc-900 border border-zinc-800 rounded-full text-zinc-500 hover:text-white hover:border-zinc-700 transition-colors z-40 shadow-lg"
-        title="Configurar Redirecionamento"
-      >
-        <Settings className="w-5 h-5" />
-      </button>
-
       {/* Admin Modal */}
       {showAdmin && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
           <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 w-full max-w-sm relative animate-in fade-in zoom-in duration-200">
             <button 
-              onClick={() => setShowAdmin(false)} 
+              onClick={closeAdmin} 
               className="absolute top-4 right-4 text-zinc-400 hover:text-white transition-colors"
             >
               <X className="w-5 h-5" />
