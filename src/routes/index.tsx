@@ -9,6 +9,12 @@ export const Route = createFileRoute("/")({
 const QUESTIONS = [
   {
     id: 1,
+    question: "Você promete manter sigilo absoluto sobre as fotos e perfis que verá a seguir?",
+    yesText: "Sim, eu prometo",
+    noText: "Não",
+  },
+  {
+    id: 2,
     question: "Você é maior de 18 anos?",
     yesText: "Sim, sou maior",
     noText: "Não",
@@ -94,7 +100,7 @@ function QuizIndex() {
         <div className="max-w-md w-full">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-black text-white mb-3">
-              {currentQ.question}
+              {currentQ?.question}
             </h2>
           </div>
 
@@ -103,7 +109,7 @@ function QuizIndex() {
               onClick={() => handleAnswer(true)}
               className="w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-pink-500/50 text-white font-bold text-xl py-5 px-6 rounded-xl transition-all active:scale-95 flex items-center justify-between group"
             >
-              <span>{currentQ.yesText}</span>
+              <span>{currentQ?.yesText}</span>
               <CheckCircle2 className="w-6 h-6 text-zinc-600 group-hover:text-pink-500 transition-colors" />
             </button>
             
@@ -111,7 +117,7 @@ function QuizIndex() {
               onClick={() => handleAnswer(false)}
               className="w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-white font-bold text-xl py-5 px-6 rounded-xl transition-all active:scale-95 flex items-center justify-between group"
             >
-              <span>{currentQ.noText}</span>
+              <span>{currentQ?.noText}</span>
               <XCircle className="w-6 h-6 text-zinc-600 group-hover:text-zinc-400 transition-colors" />
             </button>
           </div>
