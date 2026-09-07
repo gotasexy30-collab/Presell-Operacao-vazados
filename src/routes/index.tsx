@@ -9,14 +9,14 @@ export const Route = createFileRoute("/")({
 const QUESTIONS = [
   {
     id: 1,
-    question: "Você promete manter sigilo absoluto sobre as fotos e perfis que verá a seguir?",
-    yesText: "Sim, eu prometo",
+    question: "Você é maior de 18 anos?",
+    yesText: "Sim, sou maior",
     noText: "Não",
   },
   {
     id: 2,
-    question: "Você é maior de 18 anos?",
-    yesText: "Sim, sou maior",
+    question: "Você promete manter sigilo absoluto sobre as fotos e perfis que verá a seguir?",
+    yesText: "Sim, eu prometo",
     noText: "Não",
   },
 ];
