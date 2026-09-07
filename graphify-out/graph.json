@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-09-07T20:44:22.243982+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 58
+    },
+    {
+      "path": "src/styles.css",
+      "bytes": 1336
+    },
+    {
+      "path": "src/routes/index.tsx",
+      "bytes": 3630
+    }
+  ],
+  "dependencies": [
+    {
+      "source": "src/routes/index.tsx",
+      "target": "@tanstack/react-router"
+    },
+    {
+      "source": "src/routes/index.tsx",
+      "target": "react"
+    },
+    {
+      "source": "src/routes/index.tsx",
+      "target": "lucide-react"
+    }
+  ]
+}
