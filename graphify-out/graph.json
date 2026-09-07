@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07T20:48:33.592472+00:00",
+  "generated_at": "2026-09-07T20:50:44.364095+00:00",
   "files": [
     {
       "path": "README.md",
@@ -15,7 +15,7 @@
     },
     {
       "path": "src/routes/index.tsx",
-      "bytes": 6026
+      "bytes": 5958
     }
   ],
   "dependencies": [
